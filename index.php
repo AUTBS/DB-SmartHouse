@@ -7,28 +7,20 @@ $dbname = "smarthouse";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-echo "</br>";
 //create DB
 
 $sql = "CREATE DATABASE " . $dbname;
-if ($conn->query($sql) === TRUE) {
-    echo "Database created successfully";
-} else {
-    echo "Error creating database: " . $conn->error;
-}
+$conn->query($sql) ;
 
 echo "</br>";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
+    echo "</br>";
 }
 
-echo "</br>";
+
 //create Table user
 $sql = "CREATE TABLE user (
 username VARCHAR(20) PRIMARY KEY,
@@ -37,12 +29,7 @@ lastname VARCHAR(30) NOT NULL,
 password VARCHAR(20)
 );";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Table user created successfully";
-} else {
-    echo "Error creating table: " . $conn->error;
-}
-echo "</br>";
+$conn->query($sql) ;
 
 //create Table Product Type
 $sql = "CREATE TABLE product_type (
@@ -50,12 +37,7 @@ type_code INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 type VARCHAR(30) NOT NULL
 )";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Table product type created successfully";
-} else {
-    echo "Error creating table: " . $conn->error;
-}
-echo "</br>";
+$conn->query($sql) ;
 
 //create Table product stock
 $sql = "CREATE TABLE product_stock (
@@ -66,12 +48,7 @@ stock INT(20) DEFAULT '0',
 FOREIGN KEY (type_code) REFERENCES product_type(type_code)
 )";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Table user created successfully";
-} else {
-    echo "Error creating table: " . $conn->error;
-}
-echo "</br>";
+$conn->query($sql) ;
 
 //create Table sell
 $sql = "CREATE TABLE sell (
@@ -83,13 +60,7 @@ FOREIGN KEY (product_code) REFERENCES product_stock(product_code),
 FOREIGN KEY (username) REFERENCES user(username)
 )";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Table sell created successfully";
-} else {
-    echo "Error creating table: " . $conn->error;
-}
-
-echo "</br>";
+$conn->query($sql) ;
 
 //create Table light sensor
 $sql = "CREATE TABLE light_sensor (
@@ -101,12 +72,8 @@ FOREIGN KEY (order_number) REFERENCES sell(order_number),
 PRIMARY KEY (order_number,report_time)
 )";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Table light sensor created successfully";
-} else {
-    echo "Error creating table: " . $conn->error;
-}
-echo "</br>";
+$conn->query($sql) ;
+
 //create Table temperature sensor
 $sql = "CREATE TABLE temperature_sensor (
 order_number INT(6) UNSIGNED , 
@@ -116,12 +83,7 @@ FOREIGN KEY (order_number) REFERENCES sell(order_number),
 PRIMARY KEY (order_number,report_time)
 )";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Table temperature sensor created successfully";
-} else {
-    echo "Error creating table: " . $conn->error;
-}
-echo "</br>";
+$conn->query($sql) ;
 
 //create Table humidity sensor
 $sql = "CREATE TABLE humidity_sensor (
@@ -132,13 +94,7 @@ FOREIGN KEY (order_number) REFERENCES sell(order_number),
 PRIMARY KEY (order_number,report_time)
 )";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Table humidity sensor created successfully";
-} else {
-    echo "Error creating table: " . $conn->error;
-}
-echo "</br>";
-
+$conn->query($sql) ;
 
 //create Table gas sensor
 $sql = "CREATE TABLE gas_sensor (
@@ -151,14 +107,7 @@ FOREIGN KEY (order_number) REFERENCES sell(order_number),
 PRIMARY KEY (order_number,report_time)
 )";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Table gas sensor created successfully";
-} else {
-    echo "Error creating table: " . $conn->error;
-}
-echo "</br>";
+$conn->query($sql) ;
 
-$str = "Hello world!";
-echo $str;
-echo "<br>What a nice day!";
+
 ?>
