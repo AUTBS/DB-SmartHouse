@@ -3,7 +3,160 @@
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
-$dbname = "test";
+$dbname = "smarthouse";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+echo "</br>";
+//create DB
+
+$sql = "CREATE DATABASE " . $dbname;
+if ($conn->query($sql) === TRUE) {
+    echo "Database created successfully";
+} else {
+    echo "Error creating database: " . $conn->error;
+}
+
+echo "</br>";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+echo "</br>";
+//create Table user
+$sql = "CREATE TABLE user (
+username VARCHAR(20) PRIMARY KEY,
+firstname VARCHAR(30) NOT NULL,
+lastname VARCHAR(30) NOT NULL,
+password VARCHAR(20)
+);";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Table user created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+echo "</br>";
+
+//create Table Product Type
+$sql = "CREATE TABLE product_type (
+type_code INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+type VARCHAR(30) NOT NULL
+)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Table product type created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+echo "</br>";
+
+//create Table product stock
+$sql = "CREATE TABLE product_stock (
+product_code INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+type_code INT(6) UNSIGNED NOT NULL,
+price INT(20) NOT NULL,
+stock INT(20) DEFAULT '0',
+FOREIGN KEY (type_code) REFERENCES product_type(type_code)
+)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Table user created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+echo "</br>";
+
+//create Table sell
+$sql = "CREATE TABLE sell (
+order_number INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+order_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+product_code INT(6) UNSIGNED, 
+username VARCHAR(20),
+FOREIGN KEY (product_code) REFERENCES product_stock(product_code),
+FOREIGN KEY (username) REFERENCES user(username)
+)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Table sell created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+
+echo "</br>";
+
+//create Table light sensor
+$sql = "CREATE TABLE light_sensor (
+order_number INT(6) UNSIGNED , 
+report_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP  ,
+light_intensity INT(6) UNSIGNED, 
+base_light_intensity INT(6) UNSIGNED,
+FOREIGN KEY (order_number) REFERENCES sell(order_number),
+PRIMARY KEY (order_number,report_time)
+)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Table light sensor created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+echo "</br>";
+//create Table temperature sensor
+$sql = "CREATE TABLE temperature_sensor (
+order_number INT(6) UNSIGNED , 
+report_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP  ,
+temperature INT(3) UNSIGNED, 
+FOREIGN KEY (order_number) REFERENCES sell(order_number),
+PRIMARY KEY (order_number,report_time)
+)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Table temperature sensor created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+echo "</br>";
+
+//create Table humidity sensor
+$sql = "CREATE TABLE humidity_sensor (
+order_number INT(6) UNSIGNED , 
+report_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP  ,
+humidity INT(3) UNSIGNED, 
+FOREIGN KEY (order_number) REFERENCES sell(order_number),
+PRIMARY KEY (order_number,report_time)
+)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Table humidity sensor created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+echo "</br>";
+
+
+//create Table gas sensor
+$sql = "CREATE TABLE gas_sensor (
+order_number INT(6) UNSIGNED , 
+report_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP  ,
+co2 INT(3) UNSIGNED, 
+co INT(3) UNSIGNED, 
+ch4 INT(3) UNSIGNED, 
+FOREIGN KEY (order_number) REFERENCES sell(order_number),
+PRIMARY KEY (order_number,report_time)
+)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Table gas sensor created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+echo "</br>";
 
 $str = "Hello world!";
 echo $str;
