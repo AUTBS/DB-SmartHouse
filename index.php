@@ -10,7 +10,7 @@ $conn = new mysqli($servername, $username, $password);
 //create DB
 
 $sql = "CREATE DATABASE " . $dbname;
-$conn->query($sql) ;
+$conn->query($sql);
 
 echo "</br>";
 
@@ -29,7 +29,7 @@ lastname VARCHAR(30) NOT NULL,
 password VARCHAR(20)
 );";
 
-$conn->query($sql) ;
+$conn->query($sql);
 
 //create Table Product Type
 $sql = "CREATE TABLE product_type (
@@ -37,7 +37,7 @@ type_code INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 type VARCHAR(30) NOT NULL
 )";
 
-$conn->query($sql) ;
+$conn->query($sql);
 
 //create Table product stock
 $sql = "CREATE TABLE product_stock (
@@ -48,7 +48,7 @@ stock INT(20) DEFAULT '0',
 FOREIGN KEY (type_code) REFERENCES product_type(type_code)
 )";
 
-$conn->query($sql) ;
+$conn->query($sql);
 
 //create Table sell
 $sql = "CREATE TABLE sell (
@@ -60,7 +60,7 @@ FOREIGN KEY (product_code) REFERENCES product_stock(product_code),
 FOREIGN KEY (username) REFERENCES user(username)
 )";
 
-$conn->query($sql) ;
+$conn->query($sql);
 
 //create Table light sensor
 $sql = "CREATE TABLE light_sensor (
@@ -72,7 +72,7 @@ FOREIGN KEY (order_number) REFERENCES sell(order_number),
 PRIMARY KEY (order_number,report_time)
 )";
 
-$conn->query($sql) ;
+$conn->query($sql);
 
 //create Table temperature sensor
 $sql = "CREATE TABLE temperature_sensor (
@@ -83,7 +83,7 @@ FOREIGN KEY (order_number) REFERENCES sell(order_number),
 PRIMARY KEY (order_number,report_time)
 )";
 
-$conn->query($sql) ;
+$conn->query($sql);
 
 //create Table humidity sensor
 $sql = "CREATE TABLE humidity_sensor (
@@ -94,7 +94,7 @@ FOREIGN KEY (order_number) REFERENCES sell(order_number),
 PRIMARY KEY (order_number,report_time)
 )";
 
-$conn->query($sql) ;
+$conn->query($sql);
 
 //create Table gas sensor
 $sql = "CREATE TABLE gas_sensor (
@@ -107,7 +107,25 @@ FOREIGN KEY (order_number) REFERENCES sell(order_number),
 PRIMARY KEY (order_number,report_time)
 )";
 
-$conn->query($sql) ;
+$conn->query($sql);
+
+echo "
+ <html>
+<body>
+
+<button  type=\"button\"id=\"demo\" onclick=\"myFunction()\">user profile.</button>
+
+<script>
+function myFunction() {
+    window.location=\"./user.php\";
+}
+</script>
+
+</body>
+</html>
+
+"
 
 
 ?>
+
