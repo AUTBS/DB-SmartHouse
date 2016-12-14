@@ -114,6 +114,10 @@ echo "
 <body>
 
 <button  type=\"button\"id=\"demo\" onclick=\"myFunction()\">user profile.</button>
+<form action = \"sensor.php\" method = \"GET\">
+         Username: <input type = \"text\" name = \"username\" />
+         <input type = \"submit\" />
+      </form>
 
 <script>
 function myFunction() {
@@ -124,8 +128,8 @@ function myFunction() {
 </body>
 </html>
 
-"
+";
 
-
+$conn->close();
 ?>
 
