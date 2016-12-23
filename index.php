@@ -41,7 +41,7 @@ $conn->query($sql);
 
 //create Table product stock
 $sql = "CREATE TABLE product_stock (
-product_code INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+product_code VARCHAR(6)   PRIMARY KEY, 
 type_code INT(6) UNSIGNED NOT NULL,
 price INT(20) NOT NULL,
 stock INT(20) DEFAULT '0',
@@ -54,7 +54,7 @@ $conn->query($sql);
 $sql = "CREATE TABLE sell (
 order_number INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 order_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-product_code INT(6) UNSIGNED, 
+product_code VARCHAR(6) , 
 username VARCHAR(20),
 FOREIGN KEY (product_code) REFERENCES product_stock(product_code),
 FOREIGN KEY (username) REFERENCES user(username)
@@ -109,27 +109,24 @@ PRIMARY KEY (order_number,report_time)
 
 $conn->query($sql);
 
-echo "
- <html>
-<body>
 
-<button  type=\"button\"id=\"demo\" onclick=\"myFunction()\">user profile.</button>
-<form action = \"sensor.php\" method = \"GET\">
-         Username: <input type = \"text\" name = \"username\" />
-         <input type = \"submit\" />
-      </form>
+//create Table gas sensor
+$sql = "INSERT INTO `product_type` VALUES (1,'light sensor')";
+$conn->query($sql);
 
-<script>
-function myFunction() {
-    window.location=\"./user.php\";
-}
-</script>
+$sql = "INSERT INTO `product_type` VALUES (2,'temperature sensor')";
+$conn->query($sql);
 
-</body>
-</html>
+$sql = "INSERT INTO `product_type` VALUES (3,'humidity sensor')";
+$conn->query($sql);
 
-";
+$sql = "INSERT INTO `product_type` VALUES (4,'gas sensor')";
+$conn->query($sql);
+
 
 $conn->close();
+
+header("Location: ./home.php"); /* Redirect browser */
+exit();
 ?>
 

@@ -23,8 +23,8 @@ echo <<<'TAG'
   <div class="hot-container">
   <img src="https://camo.githubusercontent.com/afc284462330fff4cf7c03c5bd4a5120431eb84f/687474703a2f2f616f6c61622e6769746875622e696f2f49313832302f6c6f676f2f6c6f676f2d6d642e706e67" alt="i1820" style="width:504px;height:428px;">
 	<p>
-		<a href="./users.php"   class="btn btn-red">مشاهده اطلاعات کاربر</a>
-		<a href="./adduser.php"  class="btn btn-green">اضافه کردن کاربر</a>
+		<a href="./factors.php"   class="btn btn-red">مشاهده فاکتور های فروش</a>
+		<a href="./sellproduct.php"  class="btn btn-green">فروش کالا</a>
 	</p>
 </div>
 </body>
