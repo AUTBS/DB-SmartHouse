@@ -24,10 +24,9 @@ echo <<<'TAG'
   <div class="hot-container">
   <img src="https://camo.githubusercontent.com/afc284462330fff4cf7c03c5bd4a5120431eb84f/687474703a2f2f616f6c61622e6769746875622e696f2f49313832302f6c6f676f2f6c6f676f2d6d642e706e67" alt="i1820" style="width:504px;height:428px;">
 	<p>
-		<a href="./sell.php" class="btn btn-red">مدیریت فروش</a>
-		<a href="./product.php " class="btn btn-green">مدیریت محصولات</a>
-		<a href="./user.php" class="btn btn-blue" >مدیریت کاربران</a>
-		<a href="./db.php" class="btn btn-blue" >مدیریت دیتابیس</a>
+		<a href="./databases.php" class="btn btn-red">مشاهده جدول ها</a>
+		<a href="./query.php " class="btn btn-green">وارد کردن دستور</a>
+	
 	</p>
 </div>
 </body>
